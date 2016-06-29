@@ -24,7 +24,7 @@ module "subnet" {
 
 module "public_ips_control" {
   name = "control"
-  source = "./public_ip"
+  source = "github.com/stevendborrelli/azure-tf-modules//public_ip"
   location = "${var.location}"
   resource_group_name = "${module.resource_group.name}"
   count = 3 
