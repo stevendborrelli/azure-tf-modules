@@ -22,6 +22,12 @@ module "subnet" {
   address_prefixes = "${var.subnet_address_prefixes}"
 }
 
+module "storage_account" {
+  source = "github.com/stevendborrelli/azure-tf-modules//storage_account"
+  account_name = "${var.name}osdisks"
+  resource_group_name = "${module.resource_group.name}"
+}
+
 module "public_ips_control" {
   name = "control"
   source = "github.com/stevendborrelli/azure-tf-modules//public_ip"
@@ -29,4 +35,3 @@ module "public_ips_control" {
   resource_group_name = "${module.resource_group.name}"
   count = 3 
 }
-
