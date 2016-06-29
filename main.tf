@@ -21,3 +21,12 @@ module "subnet" {
   virtual_network_name = "${module.virtual_network.name}"
   address_prefixes = "${var.subnet_address_prefixes}"
 }
+
+module "public_ips_control" {
+  name = "control"
+  source = "./public_ip"
+  location = "${var.location}"
+  resource_group_name = "${module.resource_group.name}"
+  count = 3 
+}
+
