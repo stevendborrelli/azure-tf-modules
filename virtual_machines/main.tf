@@ -3,10 +3,22 @@ variable name {
    description = "Name of the virtual network"
 }
 
+
 variable location {
   default = "Central US"
   description = "Geographic location of the virtual network"
 } 
+
+variable role {
+  default = ""
+  description = "Set role tag "
+}
+
+
+variable datacenter {
+  default = ""
+  description = "Set datacenter tag"
+}
 
 variable count {
   default = 1 
@@ -165,6 +177,13 @@ resource "azurerm_virtual_machine" "vm" {
         admin_username = "${var.admin_username}"
         admin_password = "${var.admin_password}"
     }
+
+    tags {
+      Name = "${var.vm_name}-${format(var.count_format, var.count_offset + count.index + 1)}"
+      sshUser = "${var.admin_username}"
+      role = "${var.role}"
+      dc = "${var.datacenter}"
+  }
 }
 
 output "vm_ids" {
