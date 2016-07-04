@@ -27,6 +27,6 @@ resource "azurerm_subnet" "sb"  {
 }
 
 output "ids" {
-  value = "${list(azurerm_subnet.sb.*.id)}"
+  value = [ "${azurerm_subnet.sb.*.id}" ]
 }
 
