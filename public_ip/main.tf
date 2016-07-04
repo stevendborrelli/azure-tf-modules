@@ -32,9 +32,9 @@ resource "azurerm_public_ip" "pi" {
 }
 
 output "ids" {
-  value = "${list(azurerm_public_ip.pi.*.id)}"
+  value = [ "${azurerm_public_ip.pi.*.id}" ]
 }
 
-output "ip_address" {
-  value = "${list(azurerm_public_ip.pi.*.ip_address)}"
+output "ip_addresses" {
+  value = [ "${azurerm_public_ip.pi.*.ip_address}" ]
 }
